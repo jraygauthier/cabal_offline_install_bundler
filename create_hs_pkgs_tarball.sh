@@ -12,10 +12,10 @@ SHARED_INFIX_NAME="packages"
 TARBALL_FILE="$TARBALL_OUT_DIR/${SHARED_INFIX_NAME}.tar.gz"
 
 if command -v cygpath >/dev/null 2>&1 ; then
-  GHC_DOT_DIR="$(ghc-pkg.exe --user list | head -n1 | xargs -r -0 cygpath -u | xargs -r dirname.exe | xargs -r dirname)"
+  GHC_DOT_DIR="$(ghc-pkg --user list | head -n1 | xargs -r -0 cygpath -u | xargs -r dirname.exe | xargs -r dirname)"
   CABAL_DOT_DIR="$(cabal help | tail -n2 | grep -E 'config$' | sed -r -e 's/^[ ]*//' | xargs -0 cygpath -u | xargs dirname)"
 else
-  GHC_DOT_DIR="$(ghc-pkg.exe --user list | head -n1 | xargs -r dirname.exe | xargs -r dirname)"
+  GHC_DOT_DIR="$(ghc-pkg --user list | head -n1 | xargs -r dirname.exe | xargs -r dirname)"
   CABAL_DOT_DIR="$(cabal help | tail -n2 | grep -E 'config$' | sed -r -e 's/^[ ]*//' | xargs dirname)"
 fi
 
